@@ -34,26 +34,6 @@ class StockTest extends TestCase
        $this->assertFalse($product->inStock());
     }
 
-    public function test_track_product_stock()
-    {
-        $this->seed(RetailWithProductSeeder::class);
-
-        $product = Product::first();
-
-        $this->assertFalse($product->inStock());
-
-        Http::fake(function () {
-            return [
-                'available' => true,
-                'price' => 20000
-            ];
-        });
-
-        $this->artisan('stock:track')->expectsOutput('Done');
-
-        $this->assertTrue($product->inStock());
-    }
-
     public function test_it_throw_exception_if_a_retail_implementation_is_not_found_when_tracking()
     {
         $this->seed(RetailWithProductSeeder::class);

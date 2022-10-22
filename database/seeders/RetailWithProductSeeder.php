@@ -16,13 +16,13 @@ class RetailWithProductSeeder extends Seeder
      */
     public function run()
     {
-        $ps4 = Product::create(['name' => 'Play station']);
-        $bestBuy = Retail::create(['name' => 'Amazon']);
+        $ps4 = Product::create(['name' => 'Play station 5']);
+        $bestBuy = Retail::create(['name' => 'BestBuy']);
 
         $bestBuy->addStock(new Stock([
             'price' => 10000,
             'url' => 'http://test.com',
-            'sku' => '123456',
+            'sku' => '6426149',
             'in_stock' => false
         ]),$ps4);
     }
