@@ -21,6 +21,6 @@ class RetailBestBuy implements RetailInterface
      */
     private function dollarToCent($regularPrice): int|float
     {
-        return (int) $regularPrice * 100;
+        return (int) ($regularPrice * 100);
     }
 }

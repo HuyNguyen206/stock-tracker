@@ -12,6 +12,7 @@ use Tests\TestCase;
 
 class TrackCommandTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic feature test example.
      *
