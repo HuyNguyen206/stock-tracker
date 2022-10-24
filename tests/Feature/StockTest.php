@@ -56,19 +56,19 @@ class StockTest extends TestCase
 //        $retailMock = \Mockery::mock(RetailInterface::class);
 //        $retailMock->shouldReceive('getUpdatedDataStock')->andReturn(new StockResponse(20000,true));
 
-        RetailFactory::shouldReceive('getRetailByName->getUpdatedDataStock')->andReturn(
-            new StockResponse(20000,true)
-        );
-
+//        RetailFactory::shouldReceive('getRetailByName->getUpdatedDataStock')->andReturn(
+//            new StockResponse(20000,true)
+//        );
+        $this->mockRetailRequest();
         $this->assertDatabaseMissing('stocks', [
-            'price' => 20000,
+            'price' => 29999,
             'in_stock' => true
         ]);
 
        Stock::first()->track();
 
         $this->assertDatabaseHas('stocks', [
-            'price' => 20000,
+            'price' => 29999,
             'in_stock' => true
         ]);
     }

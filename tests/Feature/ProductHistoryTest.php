@@ -32,9 +32,10 @@ class ProductHistoryTest extends TestCase
 //            'regularPrice' => 299.99
 //        ]);
 //
-        RetailFactory::shouldReceive('getRetailByName->getUpdatedDataStock')->andReturn(
-            new StockResponse(29999, true)
-        );
+//        RetailFactory::shouldReceive('getRetailByName->getUpdatedDataStock')->andReturn(
+//            new StockResponse(29999, true)
+//        );
+        $this->mockRetailRequest();
         $product->track();
 
         $this->assertCount(1, $product->fresh()->histories);

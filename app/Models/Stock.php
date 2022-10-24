@@ -2,23 +2,27 @@
 
 namespace App\Models;
 
+use App\Notifications\ImportantUpdateProduct;
+use App\UseCases\TrackStock;
 use Facades\App\Retail\RetailFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Tests\Feature\TrackCommandTest;
 
 class Stock extends Model
 {
     use HasFactory;
 
-    public function track(callable $callback = null)
+    public function product()
     {
-        $stockResponse = RetailFactory::getRetailByName($this->retail->name)->getUpdatedDataStock($this);
-        $this->update([
-            'in_stock' => $stockResponse->inStock,
-            'price' => $stockResponse->price
-        ]);
+        return $this->belongsTo(Product::class);
+    }
 
-        $callback && is_callable($callback) && $callback($this);
+    public function track()
+    {
+        TrackStock::dispatch($this);
+//        dispatch(new TrackStock($this));
+//        (new TrackStock($this))->handle();
     }
 
     public function retail()
