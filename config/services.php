@@ -32,7 +32,7 @@ return [
     ],
 
     'bestbuy' => [
-        'key' => env('BESTBUY_KEY')
+        'key' => env('BESTBUY_KEY', 'Q7rwdCDZnWPly3KzbG1KNR5F')
     ]
 
 ];
